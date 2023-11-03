@@ -1,3 +1,5 @@
+
+
 class HandEvaluator():              #maybe be checking if pair exist first i can already tell that some doesnt exist 
     def __init__(self, cards):      #return [hand, value, kicker1, kicker2, kicker3, kicker4]  hand: 0 - high card, 1 - pair, 2 - 2pairs...
         self.cards = cards

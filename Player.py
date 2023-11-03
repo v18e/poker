@@ -12,28 +12,36 @@ class Player():
     def check(self):    # doint nothing, only for print purposes
         print(f"{self.nick} checks ")
 
+    def call(self, amount):
+        self.balance -= amount - self.bet
+        self.bet = amount
+        print(f"{self.nick} calls: {amount} ")
+
     def place_bet(self, amount): #       what with re reise ??????? 
-        if self.balance > amount:
-            self.bet = amount
-            self.balance -= amount
-            print(f"{self.nick} bets: " + self.bet)
-            return True
-        else:
-            print(f"Insufficient balance for {amount} amount")
-            return False
+        self.balance -= amount - self.bet  
+        self.bet = amount 
+        print(f"{self.nick} bets: {self.bet}")
+
     
     def receive_winnings(self, winnings):  
         self.balance += winnings
 
     def draw_cards(self, deck, number=2 ):  #draw cards for player, return True    
         if not deck:
-            raise ValueError("No deck avaliable")  #shoud never happenh
+            raise ValueError("No deck avaliable")  #shoud never happend
         for _ in range(number):
             card = deck.get_card()
             if card:
                 self.cards.append(card)  
         return True
     
+    
+    def get_player_bet(self):
+        return self.bet
+    
+    def set_player_bet_zero(self):
+        self.bet = 0
+
     def extend_with_dealer_cards(self, deck): 
         self.cards.extend(deck)
 
